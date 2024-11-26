@@ -4,11 +4,6 @@ import seaborn as sns
 from IPython.display import display
 import matplotlib.pyplot as pplt
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
-from sklearn.ensemble import IsolationForest
-from sklearn.cluster import DBSCAN
-from sklearn.neighbors import LocalOutlierFactor
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -37,4 +32,13 @@ def plot_histograms(df, numerical_columns):
         pplt.ylabel('Frequency')
         pplt.show()
 
-plot_histograms(df, numerical_columns)
+def correlation_matrix(df, numerical_columns):
+    matrix = df[numerical_columns].corr()
+    pplt.figure(figsize=(8, 6))
+    sns.heatmap(matrix, annot=True, cmap='coolwarm', fmt=".2f")
+    pplt.title('Correlation Matrix of Numerical Variables')
+    pplt.show()
+
+
+
+correlation_matrix(df, numerical_columns)
